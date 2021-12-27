@@ -29,7 +29,7 @@ export const useCartStore = defineStore({
      * Add item to the cart
      * @param {string} name
      */
-    addItem(name: string) {
+    addItem(name) {
       this.rawItems.push(name)
     },
 
@@ -37,7 +37,7 @@ export const useCartStore = defineStore({
      * Remove item from the cart
      * @param {string} name
      */
-    removeItem(name: string) {
+    removeItem(name) {
       const i = this.rawItems.lastIndexOf(name)
       if (i > -1) this.rawItems.splice(i, 1)
     },
@@ -55,6 +55,8 @@ export const useCartStore = defineStore({
   },
 })
 
+// @ts-ignore
 if (import.meta.hot) {
+  // @ts-ignore
   import.meta.hot.accept(acceptHMRUpdate(useCartStore, import.meta.hot))
 }

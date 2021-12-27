@@ -21,21 +21,21 @@
         </ul>
 
         <button :disabled="!user.name">Buy</button>
-        <button :disabled="!cart.items.length" @click="clearCart" type="button" data-testid="clear">
-          Clear the cart
-        </button>
+        <button :disabled="!cart.items.length" @click="clearCart" type="button" data-testid="clear"
+          >Clear the cart</button
+        >
       </form>
     </div>
   </Layout>
 </template>
 
 <script lang="ts">
-  import Layout from './layouts/default.vue'
-  import PiniaLogo from './components/PiniaLogo.vue'
+  import Layout from '../layouts/default.vue'
+  import PiniaLogo from '../components/PiniaLogo.vue'
 
   import { defineComponent, ref } from 'vue'
-  import { useUserStore } from '@/stores/user'
-  import { useCartStore } from '@/stores/cart'
+  import { useUserStore } from '../store/user.js'
+  import { useCartStore } from '../store/cart.js'
 
   export default defineComponent({
     components: { Layout, PiniaLogo },
