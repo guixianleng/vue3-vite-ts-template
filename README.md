@@ -203,7 +203,7 @@ npm i stylus -D
 - eslint 用于校验代码格式规范
 - stylelint 用于校验 css/less 规范
 - prettier 代码格式化
-- husky + lint-staged 检测和提交规范
+- Git Hook （ husky + lint-staged ） 检测和提交规范
 - Commitizen 用于 git 规范提交
 - commitlint 用于验证 git 提交信息规范
 
@@ -262,11 +262,11 @@ trim_trailing_whitespace = false
    8. What format do you want your config file to be in?（你希望你的配置文件是什么格式?）
    9. Would you like to install them now with npm?（你想现在就用 NPM 安装它们吗?）
 
-   - 手动安装
+- 手动安装
 
-   ```shell
-   npm i @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-airbnb-base eslint-plugin-import eslint-plugin-vue -D
-   ```
+```shell
+npm i @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-airbnb-base eslint-plugin-import eslint-plugin-vue -D
+```
 
 2. 创建并配置文件 `.eslintrc.js`
 
@@ -293,7 +293,7 @@ module.exports = {
 3. 在`package.json` script 中添加 `eslint` 命令
 
 ```
-"lint:eslint": "eslint --fix --ext .js,.vue src",
+"lint:eslint": "eslint --cache --max-warnings 0 \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
 ```
 
 ### 集成 Prettier 配置
@@ -458,9 +458,23 @@ npx husky-init && npm install
 
 4. 修改 package.json 的 scripts，增加 "prepare": "husky install"
 
+#### 如何关闭
+
+```shell
+# 删除husky依赖即可
+yarn remove huksy
+```
+
+#### 如何跳过某一个检查
+
+```shell
+# 加上 --no-verify即可跳过git hook校验（--no-verify 简写为 -n）
+git commit -m "xxx" --no-verify
+```
+
 ### 配置 lint-staged
 
-`lint-staged` 这个工具一般结合 husky 来使用，它可以让 husky 的 hook 触发的命令只作用于 git add 那些文件（即 git 暂存区的文件），而不会影响到其他文件。
+`lint-staged` 自动修复提交文件风格，这个工具一般结合 husky 来使用，它可以让 husky 的 hook 触发的命令只作用于 git add 那些文件（即 git 暂存区的文件），而不会影响到其他文件。
 
 1. 安装 lint-staged
 
@@ -501,53 +515,40 @@ npm i lint-staged -D
 
 如果 `git commit` 的描述信息精准，在后期维护和 Bug 处理时会变得有据可查，项目开发周期内还可以根据规范的提交信息快速生成开发日志，从而方便我们追踪项目和把控进度。
 
-社区最流行、最知名、最受认可的 `Angular` 团队提交规范
+社区最流行、最知名、最受认可的 [Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular) 团队提交规范
 
 ### commit message 格式规范
 
-commit message 由 Header、Body、Footer 组成。
+```
+<type>(<scope>): <subject>
+```
 
-- Header
+#### type
 
-  Header 部分包括三个字段 type（必需）、scope（可选）和 subject（必需）。
+用于说明 commit 的提交类型（必须是以下几种之一）
 
-  ```
-  <type>(<scope>): <subject>
-  ```
+- feat：增加新功能
+- fix：修复问题/BUG
+- style：代码风格相关无影响运行结果的
+- perf：优化/性能提升
+- refactor：重构
+- revert：撤销修改
+- test：测试相关
+- docs：文档/注释
+- chore：依赖更新/脚手架配置修改等
+- workflow：工作流改进
+- ci：持续集成
+- mod：不确定分类的修改
+- wip：开发中
+- types：类型修改
 
-  - type --- 用于说明 commit 的提交类型（必须是以下几种之一）
+#### scope
 
-  | 值 | 描述 |
-  | --- | --- |
-  | feat | 新增一个功能 |
-  | fix | 修复一个 Bug |
-  | docs | 文档变更 |
-  | style | 代码格式（不影响功能，例如空格、分号等格式修正） |
-  | refactor | 代码重构 |
-  | perf | 改善性能 |
-  | test | 测试 |
-  | build | 变更项目构建或外部依赖（例如 scopes: webpack、gulp、npm 等） |
-  | ci | 更改持续集成软件的配置文件和 package 中的 scripts 命令，例如 scopes: Travis, Circle 等 |
-  | chore | 变更构建流程或辅助工具 |
-  | revert | 代码回退 |
+scope 用于指定本次 commit 影响的范围
 
-  - scope
+#### subject
 
-    scope 用于指定本次 commit 影响的范围
-
-  - subject
-
-    subject 是本次 commit 的简洁描述，长度约定在 50 个字符以内，通常遵循以下几个规范：
-
-    - 用动词开头，第一人称现在时表述，例如：change 代替 changed 或 changes
-    - 第一个字母小写
-    - 结尾不加句号（.）
-
-- Body
-
-  body 是对本次 commit 的详细描述，可以分成多行。（body 可省略）
-
-- Footer
+subject 是本次 commit 的简洁描述，长度约定在 50 个字符以内
 
 #### 规范 commit message 的好处
 
@@ -623,11 +624,23 @@ echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitl
 npx husky add .husky/commit-msg "npx --no-install commitlint --edit $1"
 ```
 
+### 如何关闭
+
+在 .husky/commit-msg 内注释里面的代码即可
+
+```shell
+# npx --no-install commitlint --edit "$1"
+```
+
 ## 配置环境变量文件
 
 创建相应文件，可以让项目使用环境变量：
 
-.env .env.development .env.production
+- .env
+
+- .env.development
+
+- .env.production
 
 ## IDE 插件
 
