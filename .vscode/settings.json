@@ -121,14 +121,7 @@
     "extensions": [".js", ".jsx", ".ts", ".tsx", ".vue"]
   },
   // Eslint校验的
-  "eslint.validate": [
-    "javascript",
-    "typescript",
-    "reacttypescript",
-    "reactjavascript",
-    "html",
-    "vue"
-  ],
+  "eslint.validate": ["javascript", "typescript", "reacttypescript", "reactjavascript", "html", "vue"],
   //========================================
   //============== Prettier ================
   //========================================
@@ -137,7 +130,7 @@
   "editor.formatOnSave": true,
   // 以下程序使用prettier默认进行格式化
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "SimonSiefke.prettier-vscode"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -175,5 +168,5 @@
       "source.fixAll.stylelint": true
     },
     "editor.defaultFormatter": "johnsoncodehk.volar"
-  },
+  }
 }

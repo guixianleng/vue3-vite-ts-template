@@ -9,7 +9,7 @@
 
       <form @submit.prevent="addItemToCart" data-testid="add-items">
         <input type="text" v-model="itemName" />
-        <button>Add</button>
+        <a-button type="primary">Add</a-button>
       </form>
 
       <form @submit.prevent="buy">
@@ -20,10 +20,10 @@
           </li>
         </ul>
 
-        <button :disabled="!user.name">Buy</button>
-        <button :disabled="!cart.items.length" @click="clearCart" type="button" data-testid="clear"
-          >Clear the cart</button
-        >
+        <a-button :disabled="!user.name">Buy</a-button>
+        <a-button :disabled="!cart.items.length" @click="clearCart" type="button" data-testid="clear">
+          Clear the cart
+        </a-button>
       </form>
     </div>
   </Layout>
