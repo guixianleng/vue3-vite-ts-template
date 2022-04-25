@@ -8,8 +8,11 @@ import store from './store'
 import 'virtual:svg-icons-register'
 import '@purge-icons/generated'
 
+import { registerGlobComp } from '/@/components/registerGlobComp'
+
 const app = createApp(App)
 
+registerGlobComp(app)
 app.use(router)
 app.use(store)
 

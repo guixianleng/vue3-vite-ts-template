@@ -7,16 +7,16 @@
             <span
               v-for="(tag, index) in tagList"
               :key="tag.fullPath"
-              class="arco-tag arco-tag-size-medium arco-tag-checked"
+              class="ant-tag ant-tag-checked"
               :class="{ 'link-actived': tag.fullPath === $route.fullPath }"
               @click="goto(tag)"
             >
               <span class="tag-link">{{ tag.title }}</span>
               <span
-                class="arco-icon-hover arco-tag-icon-hover arco-icon-hover-size-medium arco-tag-close-btn"
+                class="ant-icon-hover ant-tag-icon-hover ant-icon-hover-size-medium ant-tag-close-btn"
                 @click.stop="tagClose(tag, index)"
               >
-                <icon-close />
+                <Icon icon="ic:outline-close" size="14" />
               </span>
             </span>
           </div>
@@ -34,6 +34,8 @@
   import { listenerRouteChange } from '/@/utils/route-listener'
   import { useAppStore, useTabBarStore } from '/@/store'
   import type { TagProps } from '/@/store/modules/tab-bar/types'
+
+  import { Icon } from '/@/components/Icon'
 
   const appStore = useAppStore()
   const tabBarStore = useTabBarStore()
@@ -76,12 +78,12 @@
 <style scoped lang="less">
   .tab-bar-container {
     position: relative;
-    background-color: var(--color-bg-2);
+    background-color: #fff;
     .tab-bar-box {
       display: flex;
       padding: 0 0 0 20px;
-      background-color: var(--color-bg-2);
-      border-bottom: 1px solid var(--color-border);
+      background-color: #fff;
+      border-bottom: 1px solid rgb(229, 230, 235);
       .tab-bar-scroll {
         height: 32px;
         flex: 1;
@@ -92,14 +94,14 @@
           white-space: nowrap;
           overflow-x: auto;
 
-          :deep(.arco-tag) {
+          :deep(.ant-tag) {
             margin-right: 6px;
+            height: 24px;
+            font-size: 12px;
+            line-height: 22px;
+            background-color: rgb(242, 243, 245);
+            padding: 2px 8px;
             cursor: pointer;
-            &:first-child {
-              .arco-tag-close-btn {
-                display: none;
-              }
-            }
           }
         }
       }
@@ -112,21 +114,19 @@
   }
 
   .tag-link {
-    color: var(--color-text-2);
+    color: #666;
     text-decoration: none;
+    margin-right: 6px;
   }
   .link-actived {
-    color: rgb(var(--link-6));
+    color: rgb(22, 93, 255);
     .tag-link {
-      color: rgb(var(--link-6));
-    }
-    & + .arco-tag-close-btn {
-      color: rgb(var(--link-6));
+      color: rgb(22, 93, 255);
     }
   }
-  :deep(.arco-affix) {
+  :deep(.a-affix) {
     z-index: 90;
-    background-color: var(--color-bg-2);
+    background-color: rgb(242, 243, 245);
     overflow-x: auto;
   }
 </style>

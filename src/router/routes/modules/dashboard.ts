@@ -3,7 +3,7 @@ export default {
   name: 'dashboard',
   component: () => import('/@/views/dashboard/workplace/index.vue'),
   meta: {
-    locale: 'dashboard',
+    locale: '仪表盘',
     icon: 'mdi:monitor-dashboard',
     requiresAuth: true,
     roles: ['*'],

@@ -1,5 +1,5 @@
 <template>
-  <a-layout-footer class="footer">AntD + Vite admin</a-layout-footer>
+  <a-layout-footer class="footer">Ant Design Vue Admin ©2022 Created by LenGxin</a-layout-footer>
 </template>
 
 <script lang="ts" setup></script>

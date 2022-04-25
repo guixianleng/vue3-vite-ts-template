@@ -16,8 +16,10 @@
       show-icon
     />
     <template #footer>
-      <a-button @click="cancel">关闭</a-button>
-      <a-button type="primary" @click="copySettings">复制配置</a-button>
+      <a-space>
+        <a-button @click="cancel">关闭</a-button>
+        <a-button type="primary" @click="copySettings">复制配置</a-button>
+      </a-space>
     </template>
   </a-drawer>
 </template>
