@@ -1,17 +1,37 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/home.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import NProgress from 'nprogress' // progress bar
+import 'nprogress/nprogress.css'
 
-const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home,
-  },
-]
+import DefaultLayout from '/@/layout/default-layout.vue'
+import appRoutes from './routes'
+import createRouteGuard from './guard'
+
+NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes,
+  history: createWebHistory(),
+  routes: [
+    // {
+    //   path: '/',
+    //   redirect: 'login',
+    // },
+    {
+      name: 'root',
+      path: '/',
+      component: DefaultLayout,
+      children: appRoutes,
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'notFound',
+      component: () => import('/@/views/not-found/index.vue'),
+    },
+  ],
+  scrollBehavior() {
+    return { top: 0 }
+  },
 })
+
+createRouteGuard(router)
 
 export default router

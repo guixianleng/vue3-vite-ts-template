@@ -5,7 +5,28 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AAffix: typeof import('ant-design-vue/es')['Affix']
+    AAlert: typeof import('ant-design-vue/es')['Alert']
+    AAvatar: typeof import('ant-design-vue/es')['Avatar']
+    ABadge: typeof import('ant-design-vue/es')['Badge']
     AButton: typeof import('ant-design-vue/es')['Button']
+    AConfigProvider: typeof import('ant-design-vue/es')['ConfigProvider']
+    ADrawer: typeof import('ant-design-vue/es')['Drawer']
+    ADropdown: typeof import('ant-design-vue/es')['Dropdown']
+    AInputNumber: typeof import('ant-design-vue/es')['InputNumber']
+    ALayout: typeof import('ant-design-vue/es')['Layout']
+    ALayoutContent: typeof import('ant-design-vue/es')['LayoutContent']
+    ALayoutFooter: typeof import('ant-design-vue/es')['LayoutFooter']
+    ALayoutSider: typeof import('ant-design-vue/es')['LayoutSider']
+    AMenu: typeof import('ant-design-vue/es')['Menu']
+    AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
+    APopover: typeof import('ant-design-vue/es')['Popover']
+    AResult: typeof import('ant-design-vue/es')['Result']
+    ASpace: typeof import('ant-design-vue/es')['Space']
+    ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
+    ASwitch: typeof import('ant-design-vue/es')['Switch']
+    ATooltip: typeof import('ant-design-vue/es')['Tooltip']
+    ATypographyTitle: typeof import('ant-design-vue/es')['TypographyTitle']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

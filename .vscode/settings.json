@@ -167,6 +167,6 @@
       // 使用stylelint格式化代码
       "source.fixAll.stylelint": true
     },
-    "editor.defaultFormatter": "johnsoncodehk.volar"
+    "editor.defaultFormatter": "SimonSiefke.prettier-vscode"
   }
 }

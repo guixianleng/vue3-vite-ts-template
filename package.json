@@ -1,5 +1,5 @@
 {
-  "name": "vue3-vite2-ts",
+  "name": "antd-vue-admin",
   "version": "0.0.1",
   "scripts": {
     "dev": "vite --host",
@@ -16,8 +16,12 @@
     "lint:all": "npm run lint:eslint && npm run lint:stylelint && npm run lint:prettier && npm run lint:lint-staged"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^6.1.0",
+    "@iconify/iconify": "^2.2.1",
+    "@vueuse/core": "^8.3.1",
     "ant-design-vue": "^3.2.0",
     "axios": "^0.24.0",
+    "mitt": "^3.0.0",
     "mockjs": "^1.1.0",
     "pinia": "^2.0.8",
     "vue": "^3.2.25",
@@ -26,6 +30,7 @@
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
+    "@iconify/json": "^2.1.31",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",
     "@vitejs/plugin-vue": "^2.0.0",
@@ -58,6 +63,7 @@
     "vite": "^2.7.2",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-mock": "^2.9.6",
+    "vite-plugin-purge-icons": "^0.8.1",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue-eslint-parser": "^8.0.1",
     "vue-tsc": "^0.29.8"

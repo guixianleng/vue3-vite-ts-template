@@ -34,10 +34,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     root,
     resolve: {
       alias: [
-        {
-          find: 'vue-i18n',
-          replacement: 'vue-i18n/dist/vue-i18n.cjs.js',
-        },
         // /@/xxxx => src/xxxx
         {
           find: /\/@\//,
@@ -53,6 +49,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     server: {
       // Listening on all local IPs
       host: true,
+      open: true,
       port: VITE_PORT,
       // Load proxy configuration from .env
       proxy: createProxy(VITE_PROXY),
@@ -79,10 +76,13 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 
     css: {
       preprocessorOptions: {
-        // less: {
-        //   modifyVars: generateModifyVars(),
-        //   javascriptEnabled: true,
-        // },
+        less: {
+          // modifyVars: generateModifyVars(),
+          modifyVars: {
+            hack: `true; @import (reference) "${resolve('src/design/var/breakpoint.less')}";`,
+          },
+          javascriptEnabled: true,
+        },
       },
     },
 

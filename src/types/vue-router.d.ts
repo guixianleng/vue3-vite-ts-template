@@ -1,45 +1,14 @@
 export {}
 
 declare module 'vue-router' {
-  interface RouteMeta extends Record<string | number | symbol, unknown> {
-    orderNo?: number
-    // title
-    title: string
-    // dynamic router level.
-    dynamicLevel?: number
-    // dynamic router real route path (For performance).
-    realPath?: string
-    // Whether to ignore permissions
-    ignoreAuth?: boolean
-    // role info
-    roles?: RoleEnum[]
-    // Whether not to cache
-    ignoreKeepAlive?: boolean
-    // Is it fixed on tab
-    affix?: boolean
-    // icon on tab
-    icon?: string
-    frameSrc?: string
-    // current page transition
-    transitionName?: string
-    // Whether the route has been dynamically added
-    hideBreadcrumb?: boolean
-    // Hide submenu
-    hideChildrenInMenu?: boolean
-    // Carrying parameters
-    carryParam?: boolean
-    // Used internally to mark single-level menus
-    single?: boolean
-    // Currently active menu
-    currentActiveMenu?: string
-    // Never show in tab
-    hideTab?: boolean
-    // Never show in menu
-    hideMenu?: boolean
-    isLink?: boolean
-    // only build for Menu
-    ignoreRoute?: boolean
-    // Hide path for children
-    hidePathForChildren?: boolean
+  interface RouteMeta {
+    roles?: string[] // Controls roles that have access to the page
+    requiresAuth: boolean // Whether login is required to access the current page (every route must declare)
+    icon?: string // The icon show in the side menu
+    locale?: string // The locale name show in side menu and breadcrumb
+    hideInMenu?: boolean // If true, it is not displayed in the side menu
+    order?: number // Sort routing menu items. If set key, the higher the value, the more forward it is
+    noAffix?: boolean // if set true, the tag will not affix in the tab-bar
+    ignoreCache?: boolean // if set true, the page will not be cached
   }
 }

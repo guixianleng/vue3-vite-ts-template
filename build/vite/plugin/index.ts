@@ -1,10 +1,11 @@
 import type { Plugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import purgeIcons from 'vite-plugin-purge-icons'
 
 import { configMockPlugin } from './mock'
 import { configCompressPlugin } from './compress'
-import { configStyleImportPlugin } from './styleImport'
+import { configAutoImportPlugin } from './styleImport'
 import { configSvgIconsPlugin } from './svgSprite'
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
@@ -18,8 +19,11 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   // vite-plugin-mock
   VITE_USE_MOCK && vitePlugins.push(configMockPlugin(isBuild))
 
+  // vite-plugin-purge-icons
+  vitePlugins.push(purgeIcons())
+
   // vite-plugin-style-import
-  vitePlugins.push(configStyleImportPlugin())
+  vitePlugins.push(configAutoImportPlugin())
 
   // The following plugins only work in the production environment
   if (isBuild) {
