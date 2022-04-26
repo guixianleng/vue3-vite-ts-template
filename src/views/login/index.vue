@@ -48,10 +48,17 @@
 
     .footer {
       position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      background-color: #fff;
+      left: 3%;
+      bottom: 30px;
+      width: 420px;
+      text-align: left;
+      background-color: transparent;
+    }
+
+    @media screen and (max-height: 700px) {
+      .footer {
+        display: none;
+      }
     }
 
     &-sign-in-way {
@@ -64,6 +71,11 @@
           color: @primary-color;
         }
       }
+    }
+
+    .ant-divider-inner-text {
+      font-size: 12px;
+      color: #00000073;
     }
   }
 </style>
