@@ -1,4 +1,4 @@
-import type { Router } from 'vue-router' // LocationQueryRaw
+import type { Router, LocationQueryRaw } from 'vue-router'
 import NProgress from 'nprogress' // progress bar
 
 import usePermission from '/@/hooks/permission'
@@ -29,14 +29,14 @@ export default function setupPermissionGuard(router: Router) {
           await userStore.info()
           crossroads()
         } catch (error) {
-          // next({
-          //   name: 'login',
-          //   query: {
-          //     redirect: to.name,
-          //     ...to.query,
-          //   } as LocationQueryRaw,
-          // })
-          next()
+          next({
+            name: 'login',
+            query: {
+              redirect: to.name,
+              ...to.query,
+            } as LocationQueryRaw,
+          })
+          // next()
           NProgress.done()
         }
       }
@@ -46,14 +46,14 @@ export default function setupPermissionGuard(router: Router) {
         NProgress.done()
         return
       }
-      // next({
-      //   name: 'login',
-      //   query: {
-      //     redirect: to.name,
-      //     ...to.query,
-      //   } as LocationQueryRaw,
-      // })
-      next()
+      next({
+        name: 'login',
+        query: {
+          redirect: to.name,
+          ...to.query,
+        } as LocationQueryRaw,
+      })
+      // next()
       NProgress.done()
     }
   })

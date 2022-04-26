@@ -79,7 +79,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         less: {
           // modifyVars: generateModifyVars(),
           modifyVars: {
-            hack: `true; @import (reference) "${resolve('src/design/var/breakpoint.less')}";`,
+            hack: `true; @import (reference) "${resolve(
+              'src/design/var/breakpoint.less',
+            )}"; @import (reference) "${resolve('src/design/var/variable.less')}";`,
           },
           javascriptEnabled: true,
         },

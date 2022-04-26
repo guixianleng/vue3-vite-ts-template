@@ -6,15 +6,18 @@ import DefaultLayout from '/@/layout/default-layout.vue'
 import appRoutes from './routes'
 import createRouteGuard from './guard'
 
+import Login from './routes/modules/login'
+
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    // {
-    //   path: '/',
-    //   redirect: 'login',
-    // },
+    {
+      path: '/',
+      redirect: 'login',
+    },
+    Login,
     {
       name: 'root',
       path: '/',
