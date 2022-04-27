@@ -11,5 +11,6 @@
   "menuWidth": 220,
   "globalSettings": false,
   "device": "desktop",
-  "tabBar": true
+  "tabBar": true,
+  "breadcrumb": false
 }

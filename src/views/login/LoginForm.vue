@@ -28,14 +28,7 @@
     <a-form-item>
       <a-button type="primary" size="large" block @click="handleLogin" :loading="loading">登录</a-button>
     </a-form-item>
-    <a-row>
-      <a-col :span="12">
-        <a-button block @click="setLoginState(LoginStateEnum.MOBILE)">手机登录</a-button>
-      </a-col>
-      <a-col :span="12">
-        <a-button block @click="setLoginState(LoginStateEnum.REGISTER)">注册</a-button>
-      </a-col>
-    </a-row>
+    <a-button type="link" @click="setLoginState(LoginStateEnum.MOBILE)">使用手机号登录</a-button>
 
     <a-divider>其他登录方式</a-divider>
 
@@ -45,6 +38,11 @@
       <AlipayCircleFilled />
       <GoogleCircleFilled />
       <TwitterCircleFilled />
+    </div>
+
+    <div class="sub-title">
+      <span>还没有账号？</span>
+      <a-button type="link" @click="setLoginState(LoginStateEnum.REGISTER)">去注册</a-button>
     </div>
   </a-form>
 </template>

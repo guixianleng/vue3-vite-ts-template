@@ -11,5 +11,6 @@ export interface AppState {
   globalSettings: boolean
   device: string
   tabBar: boolean
+  breadcrumb: boolean
   [key: string]: unknown
 }

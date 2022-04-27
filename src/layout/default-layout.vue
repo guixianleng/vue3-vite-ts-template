@@ -25,6 +25,7 @@
         <a-layout class="layout-content" :style="paddingStyle">
           <TabBar v-if="appStore.tabBar" />
           <a-layout-content>
+            <Breadcrumb :items="breadcrumbList" v-if="showBreadcrumb" />
             <PageLayout />
           </a-layout-content>
           <Footer v-if="footer" />
@@ -35,7 +36,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, watch } from 'vue'
+  import { computed, watch, ref } from 'vue'
   import { useRouter, useRoute } from 'vue-router'
   import { useAppStore, useUserStore } from '/@/store'
   import { MenuUnfoldOutlined } from '@ant-design/icons-vue'
@@ -45,6 +46,7 @@
   import Menu from './components/menu/index.vue'
   import Footer from './components/footer/index.vue'
   import TabBar from './components/tab-bar/index.vue'
+  import Breadcrumb from './components/breadcrumb/index.vue'
 
   import usePermission from '/@/hooks/permission'
   import useResponsive from '/@/hooks/responsive'
@@ -57,7 +59,7 @@
   useResponsive(true)
 
   const navbarHeight = `60px`
-
+  // 页面布局配置
   const navbar = computed(() => appStore.navbar)
   const renderMenu = computed(() => appStore.menu)
   const hideMenu = computed(() => appStore.hideMenu)
@@ -70,6 +72,9 @@
   })
   const collapsed = computed(() => {
     return appStore.menuCollapse
+  })
+  const showBreadcrumb = computed(() => {
+    return appStore.breadcrumb
   })
 
   const paddingStyle = computed(() => {
@@ -87,6 +92,7 @@
       if (roleValue && !permission.accessRouter(route)) router.push({ name: 'notFound' })
     },
   )
+  const breadcrumbList = ref<string[]>([])
 </script>
 
 <style scoped lang="less">

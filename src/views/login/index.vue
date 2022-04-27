@@ -46,6 +46,11 @@
       width: 400px;
     }
 
+    .sub-title {
+      margin-top: 16px;
+      text-align: right;
+    }
+
     .footer {
       position: absolute;
       left: 3%;

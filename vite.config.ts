@@ -92,7 +92,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     plugins: createVitePlugins(viteEnv, isBuild),
 
     optimizeDeps: {
-      // include: [],
+      include: ['@iconify/iconify'],
       // exclude: [],
     },
   }

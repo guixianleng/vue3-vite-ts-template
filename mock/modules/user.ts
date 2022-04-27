@@ -1,6 +1,6 @@
 export default [
   {
-    url: '/bop-core/user/info',
+    url: '/api/user/info',
     method: 'get',
     timeout: 200,
     response: ({ body }) => {
