@@ -9,10 +9,6 @@
 - [Ant-Design-Vue](https://2x.antdv.com/docs/vue/introduce-cn/) - ui basic use
 - [Mock.js](https://github.com/nuysoft/Mock) - mockjs basic syntax
 
-## Install and use
-
-- Get the project code
-
 ## 图标
 
 ### 组件库图标
@@ -38,6 +34,10 @@
 ### Iconify 图标（推荐使用）
 
 项目中使用到的是 [vite-plugin-purge-icons](https://github.com/antfu/purge-icons/blob/main/packages/vite-plugin-purge-icons/README.md) 这个插件来进行图标实现。
+
+## Install and use
+
+- Get the project code
 
 ```bash
 git clone https://github.com/guixianleng/vue3-vite-ts-template.git
