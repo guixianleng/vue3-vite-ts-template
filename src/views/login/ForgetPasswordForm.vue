@@ -14,8 +14,10 @@
       </a-form-item>
 
       <a-form-item class="enter-x">
-        <a-button type="primary" size="large" block @click="handleReset" :loading="loading">重置</a-button>
-        <a-button size="large" block class="mt-4" @click="handleBackLogin"> 返回 </a-button>
+        <a-space direction="vertical" style="width: 100%">
+          <a-button type="primary" size="large" block @click="handleReset" :loading="loading">重置</a-button>
+          <a-button size="large" block @click="handleBackLogin"> 返回 </a-button>
+        </a-space>
       </a-form-item>
     </a-form>
   </template>
