@@ -42,7 +42,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         // /#/xxxx => types/xxxx
         {
           find: /\/#\//,
-          replacement: pathResolve('types') + '/',
+          replacement: pathResolve('src/types') + '/',
         },
       ],
     },

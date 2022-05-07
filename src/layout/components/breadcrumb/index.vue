@@ -1,30 +1,32 @@
 <template>
-  <a-breadcrumb class="container-breadcrumb">
-    <a-breadcrumb-item>
-      <Icon icon="ri:apps-2-fill" />
-    </a-breadcrumb-item>
-    <a-breadcrumb-item v-for="item in items" :key="item">
-      {{ item }}
-    </a-breadcrumb-item>
+  <a-breadcrumb class="td-breadcrumb">
+    <a-breadcrumbItem v-for="item in crumbs" :key="item.to" :to="item.to">
+      {{ item.title }}
+    </a-breadcrumbItem>
   </a-breadcrumb>
 </template>
 
-<script lang="ts" setup>
-  import { PropType } from 'vue'
-  import { Icon } from '/@/components/Icon'
+<script setup lang="ts">
+  import { computed } from 'vue'
+  import { useRoute } from 'vue-router'
 
-  defineProps({
-    items: {
-      type: Array as PropType<string[]>,
-      default() {
-        return []
-      },
-    },
+  const crumbs = computed(() => {
+    const route = useRoute()
+    const pathArray = route.path.split('/')
+    pathArray.shift()
+    const breadcrumbs = pathArray.reduce((breadcrumbArray: any[], path: string, idx: number) => {
+      breadcrumbArray.push({
+        path,
+        to: breadcrumbArray[idx - 1] ? `/${breadcrumbArray[idx - 1].path}/${path}` : `/${path}`,
+        title: route.matched[idx].meta.title || path,
+      })
+      return breadcrumbArray
+    }, [])
+    return breadcrumbs
   })
 </script>
-
-<style scoped lang="less">
-  .container-breadcrumb {
-    margin: 16px 0;
+<style scoped>
+  .td-breadcrumb {
+    padding: 15px 20px;
   }
 </style>

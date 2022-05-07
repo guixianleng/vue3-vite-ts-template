@@ -1,6 +1,6 @@
 export default {
   path: 'dashboard',
-  name: 'dashboard',
+  name: 'Dashboard',
   component: () => import('/@/views/dashboard/workplace/index.vue'),
   meta: {
     locale: '仪表盘',

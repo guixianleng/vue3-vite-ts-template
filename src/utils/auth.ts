@@ -3,7 +3,7 @@
  * @Author: LenGxin
  * @Date: 2022-04-24 09:51:22
  * @LastEditors: LenGxin
- * @LastEditTime: 2022-04-24 09:51:23
+ * @LastEditTime: 2022-05-07 14:14:35
  */
 const TOKEN_KEY = 'x-admin_token'
 
@@ -12,7 +12,7 @@ const isLogin = () => {
 }
 
 const getToken = () => {
-  return localStorage.getItem(TOKEN_KEY)
+  return localStorage.getItem(TOKEN_KEY) || ''
 }
 
 const setToken = (token: string) => {

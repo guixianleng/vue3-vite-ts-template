@@ -48,6 +48,8 @@
 </template>
 <script lang="ts" setup>
   import { reactive, ref, unref, computed } from 'vue'
+  import { useRouter } from 'vue-router'
+  import { message } from 'ant-design-vue'
 
   import {
     GithubFilled,
@@ -58,14 +60,15 @@
   } from '@ant-design/icons-vue'
   import LoginFormTitle from './LoginFormTitle.vue'
 
-  // import useUserStore from '/@/store/modules/user'
+  import useUserStore from '/@/store/modules/user'
   import { LoginStateEnum, useLoginState, useFormRules, useFormValid } from './useLogin'
 
   const prefixCls = ref('vAdmin-login')
-  // const userStore = useUserStore()
+  const userStore = useUserStore()
 
   const { setLoginState, getLoginState } = useLoginState()
   const { getFormRules } = useFormRules()
+  const router = useRouter()
 
   const formRef = ref()
   const loading = ref(false)
@@ -87,10 +90,23 @@
     if (!data) return
     try {
       loading.value = true
-      // const userInfo = await userStore.login({
-      //   password: data.password,
-      //   username: data.account,
-      // })
+      await userStore.login({
+        password: data.password,
+        username: data.account,
+      })
+      message.success({
+        content: '登录成功',
+        duration: 1,
+        onClose: () => {
+          const { redirect, ...othersQuery } = router.currentRoute.value.query
+          router.push({
+            name: (redirect as string) || 'Dashboard',
+            query: {
+              ...othersQuery,
+            },
+          })
+        },
+      })
       // 登录成功逻辑处理
     } catch (error) {
       // 登录失败

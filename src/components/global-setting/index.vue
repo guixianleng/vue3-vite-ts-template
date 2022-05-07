@@ -47,15 +47,15 @@
     { name: '底部', key: 'footer', defaultVal: appStore.footer },
     { name: '多页签', key: 'tabBar', defaultVal: appStore.tabBar },
     {
+      name: '显示 Breadcrumbs',
+      key: 'breadcrumb',
+      defaultVal: appStore.breadcrumb,
+    },
+    {
       name: '菜单宽度 (px)',
       key: 'menuWidth',
       defaultVal: appStore.menuWidth,
       type: 'number',
-    },
-    {
-      name: '显示 Breadcrumbs',
-      key: 'breadcrumb',
-      defaultVal: appStore.breadcrumb,
     },
   ])
   const othersOpts = computed(() => [{ name: '色弱模式', key: 'colorWeek', defaultVal: appStore.colorWeek }])

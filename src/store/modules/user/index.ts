@@ -1,45 +1,52 @@
 import { defineStore } from 'pinia'
-import { login as userLogin, logout as userLogout, getUserInfo, LoginData } from '/@/api/user'
-import { setToken, clearToken } from '/@/utils/auth'
+import { doLogout, getUserInfo, loginApi } from '/@/api/sys/user'
+import { LoginParams, GetUserInfoModel } from '/@/api/sys/model/userModel'
+import { setToken, clearToken, getToken } from '/@/utils/auth'
 import { removeRouteListener } from '/@/utils/route-listener'
+
+import type { UserInfo } from '/@/types/store'
 import { UserState } from './types'
+
+import { RoleEnum } from '/@/enums/roleEnum'
+
+import { isArray } from '/@/utils/is'
 
 const useUserStore = defineStore('user', {
   state: (): UserState => ({
-    name: undefined,
-    avatar: undefined,
-    job: undefined,
-    organization: undefined,
-    location: undefined,
-    email: undefined,
-    introduction: undefined,
-    personalWebsite: undefined,
-    jobName: undefined,
-    organizationName: undefined,
-    locationName: undefined,
-    phone: undefined,
-    registrationDate: undefined,
-    accountId: undefined,
-    certification: undefined,
-    role: '',
+    // user info
+    userInfo: null,
+    // token
+    token: undefined,
+    // roleList
+    roleList: [],
+    // Last fetch time
+    lastUpdateTime: 0,
   }),
 
   getters: {
-    userInfo(state: UserState): UserState {
-      return { ...state }
+    getSysToken(): string {
+      return this.token || getToken()
     },
   },
 
   actions: {
+    setSysToken(token: string) {
+      this.token = token ?? '' // for null or undefined value
+      setToken(token)
+    },
+    setRoleList(roleList: RoleEnum[]) {
+      this.roleList = roleList
+    },
     switchRoles() {
       return new Promise((resolve) => {
-        this.role = this.role === 'user' ? 'admin' : 'user'
-        resolve(this.role)
+        this.roleList = this.roleList[0] === 'admin' ? this.roleList : []
+        resolve(this.roleList)
       })
     },
     // Set user's information
-    setInfo(partial: Partial<UserState>) {
-      this.$patch(partial)
+    setUserInfo(info: UserInfo | null) {
+      this.userInfo = info
+      this.lastUpdateTime = new Date().getTime()
     },
 
     // Reset user's information
@@ -47,27 +54,39 @@ const useUserStore = defineStore('user', {
       this.$reset()
     },
 
-    // Get user's information
-    async info() {
-      const res = await getUserInfo()
+    async login(params: LoginParams): Promise<GetUserInfoModel | null> {
+      try {
+        const { ...loginParams } = params
+        const data = await loginApi(loginParams)
+        const { token } = data
 
-      this.setInfo(res.data)
+        // save token
+        this.setSysToken(token)
+        return this.getUserInfo()
+      } catch (error) {
+        return Promise.reject(error)
+      }
     },
 
-    // Login
-    async login(loginForm: LoginData) {
-      try {
-        const res = await userLogin(loginForm)
-        setToken(res.data.token)
-      } catch (err) {
-        clearToken()
-        throw err
+    //  Get user's information
+    async getUserInfo(): Promise<UserInfo | null> {
+      if (!this.getSysToken) return null
+      const userInfo = await getUserInfo()
+      const { roles = [] } = userInfo
+      if (isArray(roles)) {
+        const roleList = roles.map((item) => item.value) as RoleEnum[]
+        this.setRoleList(roleList)
+      } else {
+        userInfo.roles = []
+        this.setRoleList([])
       }
+      this.setUserInfo(userInfo)
+      return userInfo
     },
 
     // Logout
     async logout() {
-      await userLogout()
+      await doLogout()
 
       this.resetInfo()
       clearToken()

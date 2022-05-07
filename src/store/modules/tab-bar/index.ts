@@ -18,7 +18,7 @@ const useAppStore = defineStore('tabBar', {
     tagList: [
       // Set the first element dynamically as needed
       {
-        title: '工作台',
+        title: '首页',
         name: 'workplace',
         fullPath: '/dashboard/workplace',
       },

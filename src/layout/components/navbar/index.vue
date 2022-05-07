@@ -93,7 +93,7 @@
   const userStore = useUserStore()
   const { logout } = useUser()
   const avatar = computed(() => {
-    return userStore.avatar || 'https://joeschmoe.io/api/v1/random'
+    return userStore.userInfo?.avatar || 'https://joeschmoe.io/api/v1/random'
   })
   const theme = computed(() => {
     return appStore.theme
