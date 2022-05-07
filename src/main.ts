@@ -9,6 +9,8 @@ import 'virtual:svg-icons-register'
 import '@purge-icons/generated'
 
 import '/@/design/index.less'
+// 解决unplugin-vue-components为自动导入message和Modal的样式
+import 'ant-design-vue/es/message/style/index'
 
 // Register global components
 import { registerGlobComp } from '/@/components/registerGlobComp'

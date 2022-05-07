@@ -8,10 +8,8 @@ import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 export function configAutoImportPlugin() {
   const styleImportPlugin = Components({
     resolvers: [AntDesignVueResolver()],
-    dts: true,
-    dirs: ['src/components'],
+    dirs: [],
     deep: false,
-    include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
   })
   return styleImportPlugin
 }
