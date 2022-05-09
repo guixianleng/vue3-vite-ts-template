@@ -12,12 +12,7 @@ export function createFakeUserList() {
       password: '123456',
       token: 'fakeToken1',
       homePath: '/dashboard',
-      roles: [
-        {
-          roleName: 'Super Admin',
-          value: 'admin',
-        },
-      ],
+      roles: ['admin'],
     },
     {
       userId: '2',
@@ -28,12 +23,7 @@ export function createFakeUserList() {
       desc: 'tester',
       token: 'fakeToken2',
       homePath: '/dashboard',
-      roles: [
-        {
-          roleName: 'Tester',
-          value: 'test',
-        },
-      ],
+      roles: ['test'],
     },
   ]
 }

@@ -3,7 +3,7 @@
  * @Author: LenGxin
  * @Date: 2022-04-24 09:58:02
  * @LastEditors: LenGxin
- * @LastEditTime: 2022-05-07 14:32:28
+ * @LastEditTime: 2022-05-09 10:43:00
  */
 import { RouteLocationNormalized, RouteRecordRaw } from 'vue-router'
 import { useUserStore } from '/@/store'
@@ -16,7 +16,7 @@ export default function usePermission() {
         !route.meta?.requiresAuth ||
         !route.meta?.roles ||
         route.meta?.roles?.includes('*') ||
-        route.meta?.roles?.includes(userStore.roleList[0])
+        route.meta?.roles?.includes(userStore.role)
       )
     },
     findFirstPermissionRoute(_routers: any, role = 'admin') {

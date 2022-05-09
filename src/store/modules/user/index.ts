@@ -7,8 +7,6 @@ import { removeRouteListener } from '/@/utils/route-listener'
 import type { UserInfo } from '/@/types/store'
 import { UserState } from './types'
 
-import { RoleEnum } from '/@/enums/roleEnum'
-
 import { isArray } from '/@/utils/is'
 
 const useUserStore = defineStore('user', {
@@ -18,7 +16,7 @@ const useUserStore = defineStore('user', {
     // token
     token: undefined,
     // roleList
-    roleList: [],
+    role: '',
     // Last fetch time
     lastUpdateTime: 0,
   }),
@@ -34,13 +32,13 @@ const useUserStore = defineStore('user', {
       this.token = token ?? '' // for null or undefined value
       setToken(token)
     },
-    setRoleList(roleList: RoleEnum[]) {
-      this.roleList = roleList
+    setRoleList(role: string) {
+      this.role = role
     },
     switchRoles() {
       return new Promise((resolve) => {
-        this.roleList = this.roleList[0] === 'admin' ? this.roleList : []
-        resolve(this.roleList)
+        this.role = this.role === 'admin' ? 'test' : 'admin'
+        resolve(this.role)
       })
     },
     // Set user's information
@@ -73,12 +71,11 @@ const useUserStore = defineStore('user', {
       if (!this.getSysToken) return null
       const userInfo = await getUserInfo()
       const { roles = [] } = userInfo
-      if (isArray(roles)) {
-        const roleList = roles.map((item) => item.value) as RoleEnum[]
-        this.setRoleList(roleList)
+      if (isArray(roles) && roles.length) {
+        this.setRoleList(roles[0])
       } else {
         userInfo.roles = []
-        this.setRoleList([])
+        this.setRoleList('')
       }
       this.setUserInfo(userInfo)
       return userInfo
