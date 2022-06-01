@@ -1,11 +1,11 @@
 <template>
-  <div class="container"> </div>
+  <div class="container">
+    <top-panel />
+  </div>
 </template>
 
-<script lang="ts">
-  export default {
-    name: 'Dashboard', // If you want the include property of keep-alive to take effect, you must name the component
-  }
+<script lang="ts" setup>
+  import TopPanel from './components/TopPanel.vue'
 </script>
 
 <style lang="less" scoped></style>

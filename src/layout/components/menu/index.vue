@@ -22,9 +22,12 @@
           appStore.updateSettings({ menuCollapse: value })
         },
       })
+
       const appRoute = computed(() => {
         return router.getRoutes().find((el) => el.name === 'root') as RouteRecordNormalized
       })
+
+      // menu tree data
       const menuTree = computed(() => {
         const copyRouter = JSON.parse(JSON.stringify(appRoute.value.children))
         copyRouter.sort((a: RouteRecordNormalized, b: RouteRecordNormalized) => {
@@ -72,6 +75,8 @@
       // You can expand as needed
 
       const selectedKey = ref<string[]>([])
+      const openKeys = ref<string[]>([])
+
       const goto = (item: RouteRecordRaw) => {
         router.push({
           name: item.name,
@@ -79,8 +84,10 @@
       }
       listenerRouteChange((newRoute) => {
         if (newRoute.meta.requiresAuth && !newRoute.meta.hideInMenu) {
-          const key = newRoute.matched[2]?.name as string
-          selectedKey.value = [key]
+          const selectKey = newRoute.matched[2]?.name as string
+          selectedKey.value = [selectKey]
+          const openKey = newRoute.matched[1]?.name as string
+          openKeys.value = [openKey]
         }
       }, true)
       const setCollapse = (val: boolean) => {
@@ -127,10 +134,11 @@
         <a-menu
           v-model:collapsed={collapsed.value}
           show-collapse-button={appStore.device !== 'mobile'}
-          v-model:selectedKey={selectedKey.value}
+          v-model:selectedKeys={selectedKey.value}
           style="height: 100%"
           onCollapse={setCollapse}
           mode="inline"
+          v-model:open-keys={openKeys.value}
         >
           {renderSubMenu()}
         </a-menu>

@@ -27,7 +27,7 @@ const router = createRouter({
     {
       path: '/:pathMatch(.*)*',
       name: 'notFound',
-      component: () => import('/@/views/not-found/index.vue'),
+      redirect: '/exception/404',
     },
   ],
   scrollBehavior() {

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="content">
-      <a-result class="result" status="403" subtitle="对不起，您没有访问该资源的权限" />
+      <a-result status="500" title="500 Internal Server Error" sub-title="抱歉，服务器出错啦" />
       <a-button key="back" type="primary">返回</a-button>
     </div>
   </div>
@@ -11,7 +11,7 @@
 
 <script lang="ts">
   export default {
-    name: '403',
+    name: '500',
   }
 </script>
 
@@ -27,7 +27,6 @@
       justify-content: center;
       height: 100%;
       text-align: center;
-      background-color: var(--color-bg-1);
       border-radius: 4px;
     }
   }

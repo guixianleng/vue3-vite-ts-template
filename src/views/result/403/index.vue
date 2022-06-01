@@ -1,11 +1,8 @@
 <template>
   <div class="container">
     <div class="content">
-      <a-result class="result" status="404" subtitle="抱歉，页面不见了～" />
-      <div class="operation-row">
-        <a-button key="again" style="margin-right: 16px">重试</a-button>
-        <a-button key="back" type="primary">返回</a-button>
-      </div>
+      <a-result status="403" title="403 Forbidden" sub-title="对不起，您没有访问该资源的权限" />
+      <a-button key="back" type="primary">返回</a-button>
     </div>
   </div>
 </template>
@@ -14,7 +11,7 @@
 
 <script lang="ts">
   export default {
-    name: '404',
+    name: '403',
   }
 </script>
 
@@ -30,7 +27,6 @@
       justify-content: center;
       height: 100%;
       text-align: center;
-      background-color: var(--color-bg-1);
       border-radius: 4px;
     }
   }
