@@ -7,7 +7,7 @@ import { isLogin } from '/@/utils/auth'
 import appRoutes from '../routes'
 
 export default function setupPermissionGuard(router: Router) {
-  router.beforeEach(async (to, from, next) => {
+  router.beforeEach(async (to, _, next) => {
     NProgress.start()
     const userStore = useUserStore()
     async function crossroads() {

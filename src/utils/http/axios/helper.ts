@@ -33,7 +33,7 @@ export function formatRequestDate(params: Recordable) {
         try {
           params[key] = isString(value) ? value.trim() : value
         } catch (error) {
-          throw new Error(error)
+          throw new Error('参数错误')
         }
       }
     }
