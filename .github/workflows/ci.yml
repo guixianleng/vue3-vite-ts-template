@@ -17,9 +17,9 @@ jobs:
           npm install
           npm run build:no-cache
 
-      - name: Deploy # 将打包内容发布到 github page
+      - name: Deploy to GitHub Pages # 将打包内容发布到 github page
         uses: JamesIves/github-pages-deploy-action@4.0.0 # 使用别人写好的 actions
         with:  # 自定义环境变量
           ACCESS_TOKEN: ${{ secrets.ANTD_ADMIN }} # VUE_ADMIN_TEMPLATE 是我的 secret 名称，需要替换成你的
-          BRANCH: antd3-admin
-          FOLDER: dist
+          branch: gh-pages
+          folder: dist
