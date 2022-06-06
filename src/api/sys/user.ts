@@ -13,7 +13,7 @@ enum Api {
 /**
  * @description: user login api
  */
-export function loginApi(params: LoginParams, mode: ErrorMessageMode = 'modal') {
+export function loginApi(params: LoginParams, mode: ErrorMessageMode = 'message') {
   return defHttp.post<LoginResultModel>(
     {
       url: Api.Login,

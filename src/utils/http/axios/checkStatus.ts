@@ -1,5 +1,5 @@
 import type { ErrorMessageMode } from '/@/types/axios'
-import { Modal } from 'ant-design-vue'
+import { message, Modal } from 'ant-design-vue'
 import { useUserStore } from '/@/store'
 
 export function checkStatus(status: number, msg: string, errorMessageMode: ErrorMessageMode = 'message'): void {
@@ -63,7 +63,7 @@ export function checkStatus(status: number, msg: string, errorMessageMode: Error
         },
       })
     } else if (errorMessageMode === 'message') {
-      console.log(errMessage)
+      message.error(errMessage)
     }
   }
 }

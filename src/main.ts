@@ -10,7 +10,8 @@ import '@purge-icons/generated'
 
 import '/@/design/index.less'
 // 解决unplugin-vue-components为自动导入message和Modal的样式
-import 'ant-design-vue/es/message/style/index'
+import 'ant-design-vue/es/message/style/css'
+import 'ant-design-vue/es/modal/style/css'
 
 // Register global components
 import { registerGlobComp } from '/@/components/registerGlobComp'
