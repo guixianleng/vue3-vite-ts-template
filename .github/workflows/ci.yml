@@ -23,5 +23,5 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ANTD_ADMIN }} # VUE_ADMIN_TEMPLATE 是我的 secret 名称，需要替换成你的
           BRANCH: gh-pages
           FOLDER: dist
-          REPOSITORY_NAME: guixianleng.github.io/vue3-vite-ts-template # 这是我的 github page 仓库
-          TARGET_FOLDER: dist # 打包的文件将放到静态服务器 github-actions-demo 目录下
+          # REPOSITORY_NAME: guixianleng.github.io/vue3-vite-ts-template # 这是我的 github page 仓库
+          # TARGET_FOLDER: dist # 打包的文件将放到静态服务器 github-actions-demo 目录下
