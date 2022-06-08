@@ -12,5 +12,5 @@
   "globalSettings": false,
   "device": "desktop",
   "tabBar": true,
-  "breadcrumb": false
+  "breadcrumb": true
 }
